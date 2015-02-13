@@ -4,7 +4,10 @@
 
 // For this animation to work, the Red component of this
 // color MUST be nonzero, AND must be an EVEN number.
-const CRGB lightcolor(8, 7, 1);
+
+// original was 8, 7, 1
+const CRGB lightcolor(1, 1, 8);
+//const CRGB lightcolor(8, 7, 1); // warm yellow
 // If you are using FastLED setCorrection(TypicalLEDStrip), 
 // then (8,7,1) gives a very soft, warm yellowish white,
 // a little bit like incandescent fairy lights.  If you are
@@ -54,9 +57,11 @@ const CRGB lightcolor(8, 7, 1);
 // down, it will saturate out at total black automatically.
 //
 uint16_t softTwinkles() {
+  
     for (int i = 0; i < NUM_LEDS; i++) {
         if (!leds[i]) continue; // skip black pixels
-        if (leds[i].r & 1) { // is red odd?
+        
+        if (leds[i].b & 1) { // is red odd?
             leds[i] -= lightcolor; // darken if red is odd
         }
         else {
